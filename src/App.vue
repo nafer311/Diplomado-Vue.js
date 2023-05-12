@@ -4,5 +4,5 @@
   </div>
 </template>
 <script>
-localStorage.setItem("user", false)
+
 </script>

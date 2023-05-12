@@ -1,6 +1,6 @@
 <script setup>
 import NavPrincipal from '../components/principal/NavPrincipal.vue'
-import PiePagina from '../components/principal/PiePagina.vue'
+
 </script>
 
 <template>
@@ -42,7 +42,6 @@ import PiePagina from '../components/principal/PiePagina.vue'
       </form>
     </div>
   </div>
-  <PiePagina v-if="$route.path !== '/DashboardPrincipal'" />
 </template>
 
 <script>

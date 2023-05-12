@@ -1,0 +1,333 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "REST API Generator",
+    "description": "You can build your Internal App by importing this API endpoints into the DronaHQ Studio REST API Connector using Import API option.",
+    "version": "1.0.0"
+  },
+  "servers": [{ "url": "https://apigenerator.dronahq.com/api/HpPanLMZ" }],
+  "tags": [{ "name": "notificaciones" }],
+  "paths": {
+    "/notificaciones/": {
+      "get": {
+        "tags": ["notificaciones"],
+        "summary": "Get all records",
+        "operationId": "getRecords",
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "id_user": { "type": "string" },
+                      "mensaje": { "type": "string" },
+                      "visto": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/notificaciones": {
+      "get": {
+        "tags": ["notificaciones"],
+        "summary": "Find records using query parameters",
+        "operationId": "getRecordsByQueryString",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id_user",
+            "in": "query",
+            "description": "Specify the value to apply this filter",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "_page",
+            "in": "query",
+            "description": "Use this parameter with _limit parameter",
+            "schema": { "type": "integer", "format": "int64" }
+          },
+          {
+            "name": "_limit",
+            "in": "query",
+            "description": "Use this parameter with _page parameter",
+            "schema": { "type": "integer", "format": "int64" }
+          },
+          {
+            "name": "_sort",
+            "in": "query",
+            "description": "Use this parameter with _order parameter",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "_order",
+            "in": "query",
+            "description": "Use this parameter with _sort parameter",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "_start",
+            "in": "query",
+            "description": "Use this parameter with _end parameter",
+            "schema": { "type": "integer", "format": "int64" }
+          },
+          {
+            "name": "_end",
+            "in": "query",
+            "description": "Use this parameter with _start parameter",
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "id_user": { "type": "string" },
+                      "mensaje": { "type": "string" },
+                      "visto": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": ["notificaciones"],
+        "summary": "Add a record",
+        "operationId": "addRecord",
+        "security": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_user": { "type": "string" },
+                  "mensaje": { "type": "string" },
+                  "visto": { "type": "string" }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "id_user": { "type": "string" },
+                    "mensaje": { "type": "string" },
+                    "visto": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/notificaciones/{id}": {
+      "get": {
+        "tags": ["notificaciones"],
+        "summary": "Get record by id",
+        "operationId": "getRecordsByID",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id_user": { "type": "string" },
+                    "mensaje": { "type": "string" },
+                    "visto": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": ["notificaciones"],
+        "summary": "Completely modify record by id",
+        "operationId": "modifyRecordByID",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_user": { "type": "string" },
+                  "mensaje": { "type": "string" },
+                  "visto": { "type": "string" }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "id_user": { "type": "string" },
+                    "mensaje": { "type": "string" },
+                    "visto": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": ["notificaciones"],
+        "summary": "Partially modify record by id",
+        "operationId": "patchRecordByID",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_user": { "type": "string" },
+                  "mensaje": { "type": "string" },
+                  "visto": { "type": "string" }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "id_user": { "type": "string" },
+                    "mensaje": { "type": "string" },
+                    "visto": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["notificaciones"],
+        "summary": "Delete record by id",
+        "operationId": "deleteRecordByID",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "content": {}
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,11 @@
 <script setup>
 import NavPrincipal from '../components/principal/NavPrincipal.vue'
-import PiePagina from '../components/principal/PiePagina.vue'
 </script>
 
 <template>
     <NavPrincipal v-if="$route.path !== '/DashboardPrincipal'" />
     <div class="text-center py-12 px-6 mt-12">
-        <h1 class="font-display font-bold text-5xl mb-6">BIENVENIDOS</h1>
+        <h1 class="font-display font-bold text-5xl mb-6">BIENESTAR EMOCIONAL</h1>
         <p class="max-w-lg mx-auto">un blog de psicología para cuidar tu mente y tus emociones. En este espacio encontrarás
             información y herramientas útiles para gestionar tus emociones, mejorar tu autoestima y disfrutar de una vida
             más plena y feliz.</p>
@@ -136,6 +135,4 @@ import PiePagina from '../components/principal/PiePagina.vue'
         </div>
     </div>
 
-</div>
-<PiePagina v-if="$route.path !== '/DashboardPrincipal'" />
-</template>
+</div></template>

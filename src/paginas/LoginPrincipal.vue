@@ -1,6 +1,6 @@
 <script setup>
 import NavPrincipal from '../components/principal/NavPrincipal.vue'
-import PiePagina from '../components/principal/PiePagina.vue'
+
 </script>
 
 <template>
@@ -51,7 +51,6 @@ import PiePagina from '../components/principal/PiePagina.vue'
       </p>
     </div>
   </div>
-  <PiePagina v-if="$route.path !== '/DashboardPrincipal'" />
 </template>
 
 
@@ -73,17 +72,19 @@ export default {
       axios.get('https://apigenerator.dronahq.com/api/uMKm8Vu6/user?email=' + this.data.email)
         .then(response => {
           if (response.data.length > 0) {
-            if(response.data[0].password == this.data.password){
+            if (response.data[0].password == this.data.password) {
               alert("Acceso conseguido");
-              localStorage.setItem("user", 1);
+              const newObj = Object.assign({}, response.data[0]);
+
+              localStorage.setItem("user", JSON.stringify(newObj));
               this.$router.push('/');
-            }else{
+            } else {
               alert("Usuario o contraseña incorrectos");
-              localStorage.setItem("user", 0)
+              localStorage.setItem("user", null)
             }
-          }else{
+          } else {
             alert("Usuario o contraseña incorrectos");
-            localStorage.setItem("user", 0)
+            localStorage.setItem("user", null)
           }
         })
     }

@@ -2,8 +2,6 @@
 import NavPrincipal from '../components/principal/NavPrincipal.vue'
 import PiePagina from '../components/principal/PiePagina.vue'
 </script>
-
-
 <template>
   <NavPrincipal v-if="$route.path !== '/DashboardPrincipal'" />
   <div  class="w-screen h-screen flex justify-center">
@@ -18,9 +16,6 @@ import PiePagina from '../components/principal/PiePagina.vue'
     </div>
   </div>
   <hr class="w-8/12 h-8/12 m-auto border-gray-200  dark:border-gray-700 mt-5 mb-10">
-
-
-        
   <PiePagina v-if="$route.path !== '/DashboardPrincipal'" />
 </template>
 

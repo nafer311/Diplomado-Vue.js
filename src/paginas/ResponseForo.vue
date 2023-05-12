@@ -1,6 +1,5 @@
 <script setup>
 import NavPrincipal from '../components/principal/NavPrincipal.vue'
-import PiePagina from '../components/principal/PiePagina.vue'
 </script>
 
 <template>
@@ -18,6 +17,9 @@ import PiePagina from '../components/principal/PiePagina.vue'
                     <button v-if="user == 1" type="button" @click="mostrarComponente = 1"
                         class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Añade
                         un nuevo tema de conversasion</button>
+
+                    <p v-if="user == 0">Inicie sesion para agregar tema de conversasion <span
+                            class="text-red-700 font-extrabold text-xl">*</span></p>
 
                 </div>
                 <label for="table-search" class="sr-only">Search</label>
@@ -179,7 +181,7 @@ import PiePagina from '../components/principal/PiePagina.vue'
 
             </div>
             <table class="w-full text-sm text-left text-gray-500 ">
-                <thead class="text-xs text-gray-100 uppercase bg-gray-50 bg-green-600">
+                <thead class="text-xs text-gray-100 uppercase bg-green-600">
                     <tr>
                         <th scope="col" class="p-4">
                             <div class="flex items-center">
@@ -424,6 +426,7 @@ import PiePagina from '../components/principal/PiePagina.vue'
                     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                         <button v-if="user == 1" data-modal-hide="large-modal" @click="mostrarComponente2 = 1"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Responder</button>
+                        <p v-if="user == 0">Inicie sesion para responder</p>
                         <button data-modal-hide="large-modal" type="button" id="close_modal" @click="cerrarModal"
                             class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cerrar</button>
                     </div>
@@ -431,7 +434,6 @@ import PiePagina from '../components/principal/PiePagina.vue'
             </div>
         </div>
     </div>
-    <PiePagina v-if="$route.path !== '/DashboardPrincipal'" />
 </template>
 
 
@@ -450,7 +452,7 @@ export default {
                 this.respuesta_foro = response.data
             ))
 
-        if (localStorage.getItem("user") == 1) {
+        if (localStorage.getItem("user") != 'null') {
             this.user = 1
         }
     },
