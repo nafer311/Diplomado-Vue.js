@@ -65,6 +65,7 @@
                   <img class="w-5 h-5 rounded-full" src="@/assets/imagenes/notification.svg" alt="user photo">
                   <div
                     class="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
+                    {{ num_notificaciones }}
                   </div>
                 </button>
               </div>
@@ -74,7 +75,7 @@
                 <ul class="py-1" role="none" >
                   <li v-for="notificacion in  notificaciones" :key="notificacion.id">
                     <a href="#" @click="leer(notificacion.id)" v-bind:class="{ 'bg-green-200': notificacion.visto == 0 }"
-                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white mb-2"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white mb-2"
                       role="menuitem">
                       {{ notificacion.mensaje }}
                     </a>
@@ -103,6 +104,8 @@
                 <div class="py-1" role="none">
                   <RouterLink to="/LoginPrincipal" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem"
                     tabindex="-1" id="menu-item-0">Usuario</RouterLink>
+                  <RouterLink to="/LoginPsicologo" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                    id="menu-item-1">Psicologo</RouterLink>
                   <RouterLink to="/LoginAdmin" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                     id="menu-item-1">Admin</RouterLink>
                 </div>
@@ -131,6 +134,12 @@ export default {
         .then(response => {
           this.notificaciones = response.data;
         })
+        this.num_notificaciones = 0;
+      this.notificaciones.forEach(element => {
+        if (element.visto == 0) {
+          this.num_notificaciones++;
+        }
+      });
     }
   },
   data() {
@@ -141,7 +150,8 @@ export default {
       showOptions: false,
       user: 0,
       data_user: {},
-      notificaciones: []
+      notificaciones: [],
+      num_notificaciones: 0
     };
   },
   mounted() {
@@ -157,6 +167,12 @@ export default {
         .then(response => {
           this.notificaciones = response.data;
         })
+        this.num_notificaciones = 0;
+      this.notificaciones.forEach(element => {
+        if (element.visto == 0) {
+          this.num_notificaciones++;
+        }
+      });
     }, 2000);
   },
   methods: {

@@ -103,7 +103,7 @@
                 <div class="sm:col-span-1">
                   <label for="countries"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Psicologo</label>
-                  <select id="countries"
+                  <select id="countries" v-model="cita.id_psicologo"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option v-for="p in psicologos" :key="p.id" :value="p.id_user">{{ p.name }}</option>
                   </select>
@@ -114,7 +114,7 @@
             </div>
             <!-- Modal footer -->
             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button data-modal-hide="large-modal" id="crear"
+              <button data-modal-hide="large-modal" id="crear" @click="newCita"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Crear
                 cita</button>
 
@@ -259,6 +259,8 @@ export default {
         hora: null,
         descripcion: null,
         id_psicologo: null,
+        id_user: null,
+        nombre_user: null
       }
     }
   },
@@ -338,6 +340,86 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    newCita() {
+      const data = this.leer(this.id_mensaje)
+      this.notificacion.id_user = data.id_user;
+      this.cita.id_user = data.id_user;
+      this.cita.nombre_user = data.name;
+      let id_ps = this.cita.id_psicologo;
+      let data2 = this.psicologos.find(function (p) {
+        return p.id_user == id_ps;
+      })
+      this.notificacion.mensaje = `Se le ha generado una cita el dia ${this.cita.fecha} a las ${this.cita.hora} horas, con el psicologo ${data2.name}`;
+
+      console.log("Info de le la notificacion")
+
+      console.log(this.notificacion)
+      axios({
+        method: 'post',
+        url: 'https://apigenerator.dronahq.com/api/HpPanLMZ/notificaciones',
+        data: this.notificacion,
+        responseType: 'json',
+      })
+        .then(response => {
+
+          this.notificacion.mensaje = null
+          this.notificacion.id_user = null
+
+          if (response.statusText == "Created") {
+            alert('Mensaje enviado')
+
+            console.log("Info de la cita")
+            console.log(this.cita)
+            axios({
+              method: 'post',
+              url: 'https://apigenerator.dronahq.com/api/ZMRD3dQw/citas',
+              data: this.cita,
+              responseType: 'json',
+            })
+              .then(response => {
+
+                this.cita.descripcion = null
+                this.cita.fecha = null
+                this.cita.hora = null
+                this.cita.id_psicologo = null
+                this.cita.id_user = null
+                this.cita.nombre_user = null
+
+                if (response.statusText == "Created") {
+                  alert("Cita generada")
+                }
+              })
+              .catch(error => {
+                console.log(error)
+              });
+
+
+            axios.get('https://apigenerator.dronahq.com/api/lzNnYU-E/mensajes?_sort=id&_order=desc')
+              .then(response => (
+                this.mensajes = response.data
+              ))
+            document.getElementById('large-modal-2').classList.add('hidden')
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
   }
 }

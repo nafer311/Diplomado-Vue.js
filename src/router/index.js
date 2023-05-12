@@ -6,9 +6,13 @@ import ResponseForo from '../paginas/ResponseForo.vue'
 import ComunicatePrincipal from '../paginas/ComunicatePrincipal.vue'
 import LoginPrincipal from '../paginas/LoginPrincipal.vue'
 import LoginAdmin from '../paginas/LoginAdmin.vue'
+import LoginPsicologo from '../paginas/LoginPsicologo.vue'
 import RegistrarUsuario from '../paginas/RegistrarUsuario.vue'
 import DashboardPrincipal from '../admin/DashboardPrincipal.vue'
 import ListadoUsuarios from '../admin/ListadoUsuarios.vue'
+import PrincipalP from '../psicologo/PrincipalP.vue'
+import CitasP from '../psicologo/CitasP.vue'
+import CitasHoy from '../psicologo/CitasHoy.vue'
 
 
 
@@ -43,6 +47,11 @@ const router = createRouter({
       component: LoginAdmin
     },
     {
+      path: '/LoginPsicologo',
+      name: 'LoginPsicologo',
+      component: LoginPsicologo
+    },
+    {
       path: '/RegistrarUsuario',
       name: 'RegistrarUsuario',
       component: RegistrarUsuario
@@ -66,6 +75,21 @@ const router = createRouter({
       path: '/ForosPrincipal/ResponseForo/:id',
       name: 'ResponseForo',
       component: ResponseForo
+    },
+    {
+      path: '/psicologo-principal',
+      name: 'PrincipalP',
+      component: PrincipalP
+    },
+    {
+      path: '/psicologo-principal/citas',
+      name: 'CitasP',
+      component: CitasP
+    },
+    {
+      path: '/psicologo-principal/citas-hoy',
+      name: 'CitasHoy',
+      component: CitasHoy
     },
     {
       path: '/about',
